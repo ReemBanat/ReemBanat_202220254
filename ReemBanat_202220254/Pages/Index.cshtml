@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>Insert Person Information</h2>
+
+<form method="post">
+    <div>
+        <label>Name:</label>
+        <input type="text" asp-for="Person.Name" />
+        <span asp-validation-for="Person.Name" style="color:red"></span>
+    </div>
+    <div>
+        <label>Mobile:</label>
+        <input type="text" asp-for="Person.Mobile" />
+        <span asp-validation-for="Person.Mobile" style="color:red"></span>
+    </div>
+    <div>
+        <label>Address:</label>
+        <input type="text" asp-for="Person.Address" />
+        <span asp-validation-for="Person.Address" style="color:red"></span>
+    </div>
+    <br />
+    <button type="submit" asp-page-handler="Save">Save</button>
+    <button type="submit" asp-page-handler="Delete" formnovalidate>Delete</button>
+</form>
+
+<hr />
+<h3>View Page (Persons List)</h3>
+<table border="1" width="100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.PersonsList)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Mobile</td>
+                <td>@p.Address</td>
+            </tr>
+        }
+    </tbody>
+</table>
